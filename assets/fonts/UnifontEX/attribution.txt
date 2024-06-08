@@ -1,0 +1,7 @@
+Assets in this directory were taken from:
+
+https://github.com/stgiga/UnifontEX
+
+A copy of the license is also included in ./LICENSE.txt.
+
+Thank you
