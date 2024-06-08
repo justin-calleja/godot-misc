@@ -1,0 +1,7 @@
+Assets in this directory were take from:
+
+https://crusenho.itch.io/
+
+A copy of the license is also included in ./License.txt.
+
+Thank you Crusenho!

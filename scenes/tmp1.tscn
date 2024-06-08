@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://qf7kjmn0qffk"]
+
+[ext_resource type="PackedScene" uid="uid://caemsmj00xule" path="res://scenes/btn/btn_lg.tscn" id="1_xouq2"]
+
+[node name="Tmp1" type="Node2D"]
+
+[node name="BtnLg" parent="." instance=ExtResource("1_xouq2")]
+offset_left = 88.0
+offset_top = 112.0
+offset_right = 184.0
+offset_bottom = 144.0
+
+[node name="BtnLg2" parent="." instance=ExtResource("1_xouq2")]
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 296.0
+offset_bottom = 144.0
+disabled = true
