@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=6 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
 [ext_resource type="Script" path="res://scripts/node/on_parent_signal.gd" id="2_eh23m"]
 [ext_resource type="Script" path="res://scripts/node/has_btn_with_sf_disabled/toggle_disabled.gd" id="3_g6l4t"]
 [ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
+[ext_resource type="Script" path="res://scripts/node/has_btn/set_text.gd" id="5_5ntqn"]
 
 [node name="Tmp1" type="Control"]
 layout_mode = 3
@@ -47,5 +48,12 @@ script = ExtResource("4_wvgej")
 
 [node name="OnParentDisabled" type="Node" parent="MC/HBox/TargetBtn"]
 script = ExtResource("2_eh23m")
-callback_name = "sdf"
+callback_name = "on_disabled"
 signal_name = "sf_disabled"
+
+[node name="SetText" type="Node" parent="MC/HBox/TargetBtn/OnParentDisabled" node_paths=PackedStringArray("btn")]
+script = ExtResource("5_5ntqn")
+text_when_enabled = "Press to disable ->"
+text_when_disabled = "Press to enable ->"
+text_when_ready = "Press to disable ->"
+btn = NodePath("../../../Btn")

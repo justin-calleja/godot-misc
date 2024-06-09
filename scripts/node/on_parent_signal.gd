@@ -24,7 +24,6 @@ var parent: Node:
 		parent = node
 
 func _ready():
-	print("cb name: %s and signal name: %s and cbname is null: %s" % [callback_name, signal_name, callback_name == ""])
 	if Engine.is_editor_hint():	return
 	
 	assert(not callback_name.is_empty(), "Missing callback_name")
@@ -34,7 +33,7 @@ func _ready():
 	for child in get_children():
 		var callback = child.get(callback_name)
 		if callback != null:
-			parent.get(signal_name).connect(callback.bind(parent))
+			parent.get(signal_name).connect(callback)
 
 
 func _get_configuration_warnings():

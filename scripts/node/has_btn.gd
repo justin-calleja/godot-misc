@@ -1,11 +1,27 @@
+@tool
+class_name HasBtn
 extends Node
 
 
-# Called when the node enters the scene tree for the first time.
+@export var btn: Button:
+	get:
+		return btn
+	set(new_btn):
+		btn = new_btn
+		update_configuration_warnings()
+
+
 func _ready():
-	pass # Replace with function body.
+	if Engine.is_editor_hint():
+		return
+	assert(is_instance_valid(btn), "btn is not valid")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _get_configuration_warnings():
+	var warnings = []
+
+	if not is_instance_valid(btn):
+		warnings.append("btn is not valid")
+
+	return warnings
+
