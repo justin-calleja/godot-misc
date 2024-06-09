@@ -1,10 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=7 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
 [ext_resource type="Script" path="res://scripts/node/on_parent_signal.gd" id="2_eh23m"]
-[ext_resource type="Script" path="res://scripts/node/has_btn_with_sf_disabled/toggle_disabled.gd" id="3_g6l4t"]
 [ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
-[ext_resource type="Script" path="res://scripts/node/has_btn/set_text.gd" id="5_5ntqn"]
+
+[sub_resource type="GDScript" id="GDScript_ef8gq"]
+resource_name = "toggle_target_btn_disabled.gd"
+script/source = "@tool
+extends HasBtnWithSfDisabled
+
+
+func on_pressed() -> void:
+	if btn_with_sf_disabled.disabled:
+		btn_with_sf_disabled.enable()
+	else:
+		btn_with_sf_disabled.disable()
+"
+
+[sub_resource type="GDScript" id="GDScript_fxjjy"]
+resource_name = "counter.gd"
+script/source = "extends Node
+
+
+func on_pressed() -> void:
+	print(\"was pressed\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ajv0n"]
+resource_name = "set_pressed_btn_text"
+script/source = "@tool
+extends HasBtn
+
+@export var text_when_enabled: String
+@export var text_when_disabled: String
+@export var text_when_ready: String
+
+
+func _ready():
+	super()
+	if not text_when_ready.is_empty():
+		btn.text = text_when_ready
+
+
+func on_disabled_change(is_disabled: bool) -> void:
+	btn.text = text_when_disabled if is_disabled else text_when_enabled
+
+"
 
 [node name="Tmp1" type="Control"]
 layout_mode = 3
@@ -28,16 +69,19 @@ theme_override_constants/separation = 24
 [node name="Btn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
 custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
-text = "..Press to disable ->.."
+text = "Press to disable ->"
 
 [node name="OnParentPressed" type="Node" parent="MC/HBox/Btn"]
 script = ExtResource("2_eh23m")
-callback_name = "toggle_target_btn_disabled"
+callback_name = "on_pressed"
 signal_name = "pressed"
 
-[node name="ToggleDisabled" type="Node" parent="MC/HBox/Btn/OnParentPressed" node_paths=PackedStringArray("btn_with_sf_disabled")]
-script = ExtResource("3_g6l4t")
+[node name="ToggleTargetBtnDisabled" type="Node" parent="MC/HBox/Btn/OnParentPressed" node_paths=PackedStringArray("btn_with_sf_disabled")]
+script = SubResource("GDScript_ef8gq")
 btn_with_sf_disabled = NodePath("../../../TargetBtn")
+
+[node name="Print" type="Node" parent="MC/HBox/Btn/OnParentPressed"]
+script = SubResource("GDScript_fxjjy")
 
 [node name="TargetBtn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
 layout_mode = 2
@@ -52,7 +96,7 @@ callback_name = "on_disabled_change"
 signal_name = "sf_disabled"
 
 [node name="SetText" type="Node" parent="MC/HBox/TargetBtn/OnParentDisabled" node_paths=PackedStringArray("btn")]
-script = ExtResource("5_5ntqn")
+script = SubResource("GDScript_ajv0n")
 text_when_enabled = "Press to disable ->"
 text_when_disabled = "Press to enable ->"
 text_when_ready = "Press to disable ->"
