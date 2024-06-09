@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=5 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
-[ext_resource type="Script" path="res://scripts/base_button/on_parent_pressed.gd" id="2_eh23m"]
-[ext_resource type="Script" path="res://scripts/base_button/toggle_target_btn_disable.gd" id="3_morwl"]
+[ext_resource type="Script" path="res://scripts/node/on_parent_signal.gd" id="2_eh23m"]
+[ext_resource type="Script" path="res://scripts/node/has_btn_with_sf_disabled/toggle_disabled.gd" id="3_g6l4t"]
+[ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
 
 [node name="Tmp1" type="Control"]
 layout_mode = 3
@@ -30,15 +31,21 @@ text = "..Press to disable ->.."
 
 [node name="OnParentPressed" type="Node" parent="MC/HBox/Btn"]
 script = ExtResource("2_eh23m")
+callback_name = "toggle_target_btn_disabled"
+signal_name = "pressed"
 
-[node name="ToggleTargetBtnDisable" type="Node" parent="MC/HBox/Btn/OnParentPressed" node_paths=PackedStringArray("target_btn")]
-script = ExtResource("3_morwl")
-target_btn = NodePath("../../../TargetBtn")
-
-[node name="EmitTargetBtnDisableState" type="Node" parent="MC/HBox/Btn/OnParentPressed/ToggleTargetBtnDisable"]
+[node name="ToggleDisabled" type="Node" parent="MC/HBox/Btn/OnParentPressed" node_paths=PackedStringArray("btn_with_sf_disabled")]
+script = ExtResource("3_g6l4t")
+btn_with_sf_disabled = NodePath("../../../TargetBtn")
 
 [node name="TargetBtn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
 layout_mode = 2
 text = "Disable this button
 
 by clicking the other one"
+script = ExtResource("4_wvgej")
+
+[node name="OnParentDisabled" type="Node" parent="MC/HBox/TargetBtn"]
+script = ExtResource("2_eh23m")
+callback_name = "sdf"
+signal_name = "sf_disabled"
