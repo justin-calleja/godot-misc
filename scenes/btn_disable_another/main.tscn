@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=4 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
-[ext_resource type="Script" path="res://scripts/base_button/tmp.gd" id="3_exsf6"]
+[ext_resource type="Script" path="res://scripts/base_button/on_parent_pressed.gd" id="2_eh23m"]
+[ext_resource type="Script" path="res://scripts/base_button/toggle_disable_target_btn.gd" id="3_morwl"]
 
 [node name="Tmp1" type="Control"]
 layout_mode = 3
@@ -27,11 +28,12 @@ custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 text = "..Press to disable ->.."
 
-[node name="DisableTargetOnPressed" type="Node" parent="MC/HBox/Btn" node_paths=PackedStringArray("_target")]
-script = ExtResource("3_exsf6")
-text_when_target_is_enabled = "Press to disable ->"
-text_when_target_is_disabled = "Press to enable ->"
-_target = NodePath("../../TargetBtn")
+[node name="OnParentPressed" type="Node" parent="MC/HBox/Btn"]
+script = ExtResource("2_eh23m")
+
+[node name="ToggleDisableTargetBtn" type="Node" parent="MC/HBox/Btn/OnParentPressed" node_paths=PackedStringArray("target_btn")]
+script = ExtResource("3_morwl")
+target_btn = NodePath("../../../TargetBtn")
 
 [node name="TargetBtn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
 layout_mode = 2
