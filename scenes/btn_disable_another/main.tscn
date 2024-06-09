@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://qf7kjmn0qffk"]
+
+[ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
+[ext_resource type="Script" path="res://scripts/base_button/tmp.gd" id="3_exsf6"]
+
+[node name="Tmp1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 46
+theme_override_constants/margin_top = 46
+
+[node name="HBox" type="HBoxContainer" parent="MC"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Btn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+text = "..Press to disable ->.."
+
+[node name="DisableTargetOnPressed" type="Node" parent="MC/HBox/Btn" node_paths=PackedStringArray("_target")]
+script = ExtResource("3_exsf6")
+text_when_target_is_enabled = "Press to disable ->"
+text_when_target_is_disabled = "Press to enable ->"
+_target = NodePath("../../TargetBtn")
+
+[node name="TargetBtn" parent="MC/HBox" instance=ExtResource("1_0f8q8")]
+layout_mode = 2
+text = "Disable this button
+
+by clicking the other one"

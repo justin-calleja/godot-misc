@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://tlartynj2n3e"]
+
+[ext_resource type="Theme" uid="uid://bc2s6ph864bmw" path="res://resources/button_theme.tres" id="1_tqi87"]
+
+[node name="ButtonLarge" type="Button"]
+theme = ExtResource("1_tqi87")
+theme_override_constants/h_separation = 12
+text = "dummy text"
