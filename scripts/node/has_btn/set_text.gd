@@ -1,7 +1,6 @@
 @tool
 extends HasBtn
 
-
 @export var text_when_enabled: String
 @export var text_when_disabled: String
 @export var text_when_ready: String
@@ -13,10 +12,6 @@ func _ready():
 		btn.text = text_when_ready
 
 
-func on_disabled(is_disabled: bool) -> void:
+func on_disabled_change(is_disabled: bool) -> void:
 	btn.text = text_when_disabled if is_disabled else text_when_enabled
 
-
-#func set_text(text: String) -> void:
-	#print("in here... with %s" % text)
-	##btn.text = text

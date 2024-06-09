@@ -48,7 +48,7 @@ script = ExtResource("4_wvgej")
 
 [node name="OnParentDisabled" type="Node" parent="MC/HBox/TargetBtn"]
 script = ExtResource("2_eh23m")
-callback_name = "on_disabled"
+callback_name = "on_disabled_change"
 signal_name = "sf_disabled"
 
 [node name="SetText" type="Node" parent="MC/HBox/TargetBtn/OnParentDisabled" node_paths=PackedStringArray("btn")]
