@@ -1,5 +1,8 @@
 @tool
+class_name TargetBtn
 extends Node
+
+signal target_btn_disabled(state: bool)
 
 @export var target_btn: BaseButton:
 	get:
@@ -14,18 +17,6 @@ func _ready():
 		return
 	assert(is_instance_valid(target_btn), "target_btn is not valid. Have you assigned a BaseButton to it?")
 
-func on_pressed() -> void:
-	if target_btn.disabled: enable(target_btn)
-	else: disable(target_btn)
-
-
-func disable(btn: BaseButton) -> void:
-	btn.set_disabled(true)
-
-
-func enable(btn: BaseButton) -> void:
-	btn.set_disabled(false)
-
 
 func _get_configuration_warnings():
 	var warnings = []
@@ -35,3 +26,13 @@ func _get_configuration_warnings():
 
 	# Returning an empty array means "no warning".
 	return warnings
+
+
+func disable(btn: BaseButton) -> void:
+	btn.set_disabled(true)
+	target_btn_disabled.emit(true)
+
+
+func enable(btn: BaseButton) -> void:
+	btn.set_disabled(false)
+	target_btn_disabled.emit(false)
