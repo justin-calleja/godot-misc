@@ -6,8 +6,8 @@ extends Node
 @export var btn: Button:
 	get:
 		return btn
-	set(new_btn):
-		btn = new_btn
+	set(node):
+		btn = node
 		update_configuration_warnings()
 
 

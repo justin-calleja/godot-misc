@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dr6l7gegmej14"]
+
+[ext_resource type="FontFile" uid="uid://bp5hypxvxi4yu" path="res://assets/fonts/madou-futo-maru-gothic/MadouFutoMaruGothic-d9Xo7.ttf" id="1_ebi1o"]
+
+[resource]
+font = ExtResource("1_ebi1o")
+font_size = 24
+font_color = Color(0.94902, 0.94902, 0.94902, 1)

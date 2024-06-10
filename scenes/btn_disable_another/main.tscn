@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=8 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
 [ext_resource type="Script" path="res://scripts/node/on_parent_signal.gd" id="2_eh23m"]
+[ext_resource type="LabelSettings" uid="uid://dr6l7gegmej14" path="res://resources/madoufutomarugothic_normal_2_white.tres" id="3_jmax1"]
 [ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
 
 [sub_resource type="GDScript" id="GDScript_ef8gq"]
@@ -17,13 +18,23 @@ func on_pressed() -> void:
 		btn_with_sf_disabled.disable()
 "
 
-[sub_resource type="GDScript" id="GDScript_fxjjy"]
-resource_name = "counter.gd"
-script/source = "extends Node
+[sub_resource type="GDScript" id="GDScript_rh73t"]
+resource_name = "update_label.gd"
+script/source = "@tool
+extends HasLabel
+
+var counter = 0
+
+func _ready():
+	super()
+	label.text = str(counter)
 
 
 func on_pressed() -> void:
-	print(\"was pressed\")
+	counter += 1
+	label.text = str(counter)
+
+
 "
 
 [sub_resource type="GDScript" id="GDScript_ajv0n"]
@@ -84,11 +95,15 @@ signal_name = "pressed"
 script = SubResource("GDScript_ef8gq")
 btn_with_sf_disabled = NodePath("../../../../VBoxContainer2/TargetBtn")
 
-[node name="Print" type="Node" parent="MC/HBox/VBoxContainer/Btn/OnParentPressed"]
-script = SubResource("GDScript_fxjjy")
+[node name="UpdateLabel" type="Node" parent="MC/HBox/VBoxContainer/Btn/OnParentPressed" node_paths=PackedStringArray("label")]
+script = SubResource("GDScript_rh73t")
+label = NodePath("../../../Label")
 
 [node name="Label" type="Label" parent="MC/HBox/VBoxContainer"]
 layout_mode = 2
+text = "123"
+label_settings = ExtResource("3_jmax1")
+horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MC/HBox"]
 layout_mode = 2
@@ -114,3 +129,6 @@ btn = NodePath("../../../../VBoxContainer/Btn")
 
 [node name="Label" type="Label" parent="MC/HBox/VBoxContainer2"]
 layout_mode = 2
+text = "4242"
+label_settings = ExtResource("3_jmax1")
+horizontal_alignment = 1
