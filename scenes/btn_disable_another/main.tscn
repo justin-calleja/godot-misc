@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
 [ext_resource type="Script" path="res://scenes/btn_disable_another/src_and_target_btns.gd" id="1_1nk75"]
-[ext_resource type="Script" path="res://scripts/Node/on_parent_signal.gd" id="2_eh23m"]
+[ext_resource type="Script" path="res://scripts/Node-tmp/on_parent_signal.gd" id="2_eh23m"]
 [ext_resource type="LabelSettings" uid="uid://dr6l7gegmej14" path="res://resources/madoufutomarugothic_normal_2_white.tres" id="3_jmax1"]
 [ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
 
