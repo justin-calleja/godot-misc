@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=10 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
+[ext_resource type="Script" path="res://scenes/btn_disable_another/src_and_target_btns.gd" id="1_1nk75"]
 [ext_resource type="Script" path="res://scripts/node/on_parent_signal.gd" id="2_eh23m"]
 [ext_resource type="LabelSettings" uid="uid://dr6l7gegmej14" path="res://resources/madoufutomarugothic_normal_2_white.tres" id="3_jmax1"]
 [ext_resource type="Script" path="res://scripts/base_button/btn_with_sf_disabled.gd" id="4_wvgej"]
@@ -56,6 +57,38 @@ func _ready():
 func on_disabled_change(is_disabled: bool) -> void:
 	btn.text = text_when_disabled if is_disabled else text_when_enabled
 
+"
+
+[sub_resource type="GDScript" id="GDScript_jbwdn"]
+script/source = "extends Node
+
+var _src_btn_text_when_enabled = \"Press to disable ->\"
+var _src_btn_text_when_disabled = \"Press to disable ->\"
+var _src_btn_text_when_ready = _src_btn_text_when_enabled
+
+var _parent: SrcAndTargetBtns
+
+
+func _ready():
+	_parent= get_parent()
+	assert(_parent is SrcAndTargetBtns)
+	_parent.src_btn.pressed.connect(on_src_pressed)
+	_parent.src_btn.text = _src_btn_text_when_ready
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func on_src_pressed():
+	var is_target_btn_disabled = _parent.target_btn.disabled
+	toggle_target_btn_disabled_state(is_target_btn_disabled)
+	toggle_src_btn_text(is_target_btn_disabled)
+
+
+func toggle_target_btn_disabled_state(is_target_btn_disabled: bool) -> void:
+	_parent.target_btn.disabled = false if is_target_btn_disabled else true
+
+
+func toggle_src_btn_text(is_target_btn_disabled) -> void:
+	_parent.src_btn.text = _src_btn_text_when_enabled if is_target_btn_disabled else _src_btn_text_when_disabled
 "
 
 [node name="Tmp1" type="Control"]
@@ -140,6 +173,14 @@ label = NodePath("../../../Label")
 
 [node name="Label" type="Label" parent="MC/HBox/VBoxContainer2"]
 layout_mode = 2
-text = "4242"
+text = "0"
 label_settings = ExtResource("3_jmax1")
 horizontal_alignment = 1
+
+[node name="SrcAndTargetBtns" type="Node" parent="." node_paths=PackedStringArray("src_btn", "target_btn")]
+script = ExtResource("1_1nk75")
+src_btn = NodePath("../MC/HBox/VBoxContainer/Btn")
+target_btn = NodePath("../MC/HBox/VBoxContainer2/TargetBtn")
+
+[node name="Node" type="Node" parent="SrcAndTargetBtns"]
+script = SubResource("GDScript_jbwdn")
