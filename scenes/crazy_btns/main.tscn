@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qf7kjmn0qffk"]
+[gd_scene load_steps=14 format=3 uid="uid://qf7kjmn0qffk"]
 
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
 [ext_resource type="Script" path="res://scenes/crazy_btns/context.gd" id="3_hxihh"]
@@ -8,14 +8,13 @@
 resource_name = "OnSrcBtnPressed"
 script/source = "extends TNode
 
-var _parent: CrazyBtnsContext
-
-
-func _ready():
-	_parent = get_parent()
-	traverseDF(\"on_ready\", _parent)
-	_parent.src_btn.pressed.connect(traverseDF.bind(\"on_src_btn_pressed\", _parent))
-
+#var _parent: CrazyBtnsContext
+#
+#
+#func _ready():
+	#_parent = get_parent()
+	#_parent.src_btn.pressed.connect(traverseDF.bind(\"on_src_btn_pressed\", _parent))
+#
 "
 
 [sub_resource type="GDScript" id="GDScript_upocu"]
@@ -30,16 +29,13 @@ func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
 resource_name = "ToggleSrcBtnText.gd"
 script/source = "extends TNode
 
-var text_when_enabled = \"Press to disable other btn\"
-var text_when_disabled = \"Press to enable other btn\"
-var text_when_ready = text_when_enabled
-
-func on_ready(context: CrazyBtnsContext):
-	context.src_btn.text = text_when_ready
-
 
 func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
-	context.src_btn.text = text_when_disabled if context.target_btn.disabled else text_when_enabled
+	if context.target_btn.disabled:
+		context.src_btn.text = context.src_btn_text_when_target_btn_disabled
+	else:
+		context.src_btn.text = context.src_btn_text_when_target_btn_enabled
+
 "
 
 [sub_resource type="GDScript" id="GDScript_10lpq"]
@@ -57,21 +53,20 @@ script/source = "extends TNode
 
 
 func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
-	context.src_label.text = str(context.src_btn_press_count)
+	context.update_src_label_text()
 "
 
 [sub_resource type="GDScript" id="GDScript_hi0rq"]
 resource_name = "OnTargetBtnPressed"
 script/source = "extends TNode
 
-var _parent: CrazyBtnsContext
-
-
-func _ready():
-	_parent = get_parent()
-	traverseDF(\"on_ready\", _parent)
-	_parent.target_btn.pressed.connect(traverseDF.bind(\"on_target_btn_pressed\", _parent))
-
+#var _parent: CrazyBtnsContext
+#
+#
+#func _ready():
+	#_parent = get_parent()
+	#_parent.target_btn.pressed.connect(traverseDF.bind(\"on_target_btn_pressed\", _parent))
+#
 "
 
 [sub_resource type="GDScript" id="GDScript_sgkll"]
@@ -89,7 +84,26 @@ script/source = "extends TNode
 
 
 func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
-	context.target_label.text = str(context.target_btn_press_count)
+	context.update_target_label_text()
+"
+
+[sub_resource type="GDScript" id="GDScript_jne2v"]
+resource_name = "UpdateTargetBtnText"
+script/source = "extends TNode
+
+
+func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.update_target_btn_text()
+"
+
+[sub_resource type="GDScript" id="GDScript_gqskd"]
+resource_name = "SwitchBtns"
+script/source = "extends TNode
+
+
+func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
+	if context.is_ok_to_switch():
+		context.switch_btns()
 "
 
 [node name="Tmp1" type="Control"]
@@ -132,6 +146,7 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="TargetBtn" parent="MC/HBox/VBoxContainer2" instance=ExtResource("1_0f8q8")]
+custom_minimum_size = Vector2(272, 2.08165e-12)
 layout_mode = 2
 text = "Disable this button
 
@@ -143,11 +158,13 @@ text = "0"
 label_settings = ExtResource("3_jmax1")
 horizontal_alignment = 1
 
-[node name="Context" type="Node" parent="." node_paths=PackedStringArray("src_btn", "src_label", "target_btn", "target_label")]
+[node name="Context" type="Node" parent="." node_paths=PackedStringArray("src_btn", "src_btn_on_pressed_tree_root", "src_label", "target_btn", "target_btn_on_pressed_tree_root", "target_label")]
 script = ExtResource("3_hxihh")
 src_btn = NodePath("../MC/HBox/VBoxContainer/Btn")
+src_btn_on_pressed_tree_root = NodePath("OnSrcBtnPressed")
 src_label = NodePath("../MC/HBox/VBoxContainer/Label")
 target_btn = NodePath("../MC/HBox/VBoxContainer2/TargetBtn")
+target_btn_on_pressed_tree_root = NodePath("OnTargetBtnPressed")
 target_label = NodePath("../MC/HBox/VBoxContainer2/Label")
 
 [node name="OnSrcBtnPressed" type="Node" parent="Context"]
@@ -173,3 +190,9 @@ script = SubResource("GDScript_sgkll")
 
 [node name="UpdateTargetBtnLabel" type="Node" parent="Context/OnTargetBtnPressed/IncTargetBtnCount"]
 script = SubResource("GDScript_gyd22")
+
+[node name="UpdateTargetBtnText" type="Node" parent="Context/OnTargetBtnPressed/IncTargetBtnCount"]
+script = SubResource("GDScript_jne2v")
+
+[node name="SwitchBtns" type="Node" parent="Context/OnTargetBtnPressed/IncTargetBtnCount"]
+script = SubResource("GDScript_gqskd")
