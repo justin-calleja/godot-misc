@@ -8,7 +8,7 @@ extends Node
 
 func traverseDF(fn_name: String, context: Variant) -> void:
 	if has_method(fn_name):
-		#print("Visiting ", self.name)
+		#print("Visiting ", self.get_path())
 		call(fn_name, context)
 
 	for child in get_children():

@@ -42,15 +42,6 @@ script/source = "extends TNode
 
 "
 
-[sub_resource type="GDScript" id="GDScript_gyd22"]
-resource_name = "UpdateTargetBtnLabel"
-script/source = "extends TNode
-
-
-func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
-	context.update_target_label_text()
-"
-
 [sub_resource type="GDScript" id="GDScript_sgkll"]
 resource_name = "IncTargetBtnCount"
 script/source = "extends TNode
@@ -77,6 +68,15 @@ script/source = "extends TNode
 func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
 	if context.is_ok_to_switch():
 		context.switch_btns()
+"
+
+[sub_resource type="GDScript" id="GDScript_gyd22"]
+resource_name = "UpdateTargetBtnLabel"
+script/source = "extends TNode
+
+
+func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.update_target_label_text()
 "
 
 [node name="Tmp1" type="Control"]
@@ -155,9 +155,6 @@ script = SubResource("GDScript_vd5m7")
 [node name="OnTargetBtnPressed" type="Node" parent="Context"]
 script = SubResource("GDScript_hi0rq")
 
-[node name="UpdateTargetBtnLabel" type="Node" parent="Context/OnTargetBtnPressed"]
-script = SubResource("GDScript_gyd22")
-
 [node name="IncTargetBtnCount" type="Node" parent="Context/OnTargetBtnPressed"]
 script = SubResource("GDScript_sgkll")
 
@@ -166,3 +163,6 @@ script = SubResource("GDScript_jne2v")
 
 [node name="SwitchBtns" type="Node" parent="Context/OnTargetBtnPressed/IncTargetBtnCount"]
 script = SubResource("GDScript_gqskd")
+
+[node name="UpdateTargetBtnLabel" type="Node" parent="Context/OnTargetBtnPressed"]
+script = SubResource("GDScript_gyd22")
