@@ -6,10 +6,11 @@ extends Node
 ## (see: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html)
 ##
 
-func traverseBF(fn_name: String, rootNode: TNode) -> void:
+func traverseBF(fn_name: String, context: Variant) -> void:
 	if has_method(fn_name):
-		call(fn_name, rootNode)
+		print("Visiting ", self.name)
+		call(fn_name, context)
 
 	for child in get_children():
-		child.traverseBF(fn_name, rootNode)
+		child.traverseBF(fn_name, context)
 
