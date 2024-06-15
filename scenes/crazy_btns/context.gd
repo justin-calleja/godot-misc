@@ -69,6 +69,14 @@ func _ready():
 	_post_ready_assertions()
 
 
+func toggle_src_btn_text() -> void:
+	src_btn.text = src_btn_text_when_target_btn_disabled if target_btn.disabled else src_btn_text_when_target_btn_enabled
+
+
+func toggle_target_btn_disabled() -> void:
+	target_btn.disabled = not target_btn.disabled
+
+
 func on_src_btn_pressed() -> void:
 	src_btn_on_pressed_tree_root.traverseDF("on_src_btn_pressed", self)
 
