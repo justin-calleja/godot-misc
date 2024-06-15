@@ -27,7 +27,6 @@ var src_btn_text_when_ready = src_btn_text_when_target_btn_enabled
 		src_label = node
 		update_configuration_warnings()
 
-var src_btn_press_count: int = 0
 
 @export var target_btn: Button:
 	get:
