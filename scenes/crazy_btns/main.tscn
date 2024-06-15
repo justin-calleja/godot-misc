@@ -10,8 +10,8 @@ script/source = "extends TNode
 
 "
 
-[sub_resource type="GDScript" id="GDScript_upocu"]
-resource_name = "ToggleTargetBtnDisabledState.gd"
+[sub_resource type="GDScript" id="GDScript_ippqe"]
+resource_name = "ToggleTargetBtnDisabled"
 script/source = "extends TNode
 
 func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
@@ -153,7 +153,7 @@ target_label = NodePath("../MC/HBox/VBoxContainer2/Label")
 script = SubResource("GDScript_2pd1j")
 
 [node name="ToggleTargetBtnDisabled" type="Node" parent="Context/OnSrcBtnPressed"]
-script = SubResource("GDScript_upocu")
+script = SubResource("GDScript_ippqe")
 
 [node name="ToggleSrcBtnText" type="Node" parent="Context/OnSrcBtnPressed/ToggleTargetBtnDisabled"]
 script = SubResource("GDScript_q8xvy")
