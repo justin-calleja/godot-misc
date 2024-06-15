@@ -1,0 +1,175 @@
+[gd_scene load_steps=12 format=3 uid="uid://qf7kjmn0qffk"]
+
+[ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_0f8q8"]
+[ext_resource type="Script" path="res://scenes/crazy_btns/context.gd" id="3_hxihh"]
+[ext_resource type="LabelSettings" uid="uid://dr6l7gegmej14" path="res://resources/madoufutomarugothic_normal_2_white.tres" id="3_jmax1"]
+
+[sub_resource type="GDScript" id="GDScript_2pd1j"]
+resource_name = "OnSrcBtnPressed"
+script/source = "extends TNode
+
+var _parent: CrazyBtnsContext
+
+
+func _ready():
+	_parent = get_parent()
+	traverseDF(\"on_ready\", _parent)
+	_parent.src_btn.pressed.connect(traverseDF.bind(\"on_src_btn_pressed\", _parent))
+
+"
+
+[sub_resource type="GDScript" id="GDScript_upocu"]
+resource_name = "ToggleTargetBtnDisabledState.gd"
+script/source = "extends TNode
+
+func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.target_btn.disabled = not context.target_btn.disabled
+"
+
+[sub_resource type="GDScript" id="GDScript_q8xvy"]
+resource_name = "ToggleSrcBtnText.gd"
+script/source = "extends TNode
+
+var text_when_enabled = \"Press to disable other btn\"
+var text_when_disabled = \"Press to enable other btn\"
+var text_when_ready = text_when_enabled
+
+func on_ready(context: CrazyBtnsContext):
+	context.src_btn.text = text_when_ready
+
+
+func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.src_btn.text = text_when_disabled if context.target_btn.disabled else text_when_enabled
+"
+
+[sub_resource type="GDScript" id="GDScript_10lpq"]
+resource_name = "IncSrcBtnCount"
+script/source = "extends TNode
+
+
+func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.src_btn_press_count += 1
+"
+
+[sub_resource type="GDScript" id="GDScript_vd5m7"]
+resource_name = "UpdateSrcBtnLabel"
+script/source = "extends TNode
+
+
+func on_src_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.src_label.text = str(context.src_btn_press_count)
+"
+
+[sub_resource type="GDScript" id="GDScript_hi0rq"]
+resource_name = "OnTargetBtnPressed"
+script/source = "extends TNode
+
+var _parent: CrazyBtnsContext
+
+
+func _ready():
+	_parent = get_parent()
+	traverseDF(\"on_ready\", _parent)
+	_parent.target_btn.pressed.connect(traverseDF.bind(\"on_target_btn_pressed\", _parent))
+
+"
+
+[sub_resource type="GDScript" id="GDScript_sgkll"]
+resource_name = "IncTargetBtnCount"
+script/source = "extends TNode
+
+
+func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.target_btn_press_count += 1
+"
+
+[sub_resource type="GDScript" id="GDScript_gyd22"]
+resource_name = "UpdateTargetBtnLabel"
+script/source = "extends TNode
+
+
+func on_target_btn_pressed(context: CrazyBtnsContext) -> void:
+	context.target_label.text = str(context.target_btn_press_count)
+"
+
+[node name="Tmp1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 46
+theme_override_constants/margin_top = 46
+
+[node name="HBox" type="HBoxContainer" parent="MC"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MC/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Btn" parent="MC/HBox/VBoxContainer" instance=ExtResource("1_0f8q8")]
+custom_minimum_size = Vector2(272, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 3
+text = "init: press to disable other btn"
+
+[node name="Label" type="Label" parent="MC/HBox/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("3_jmax1")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MC/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TargetBtn" parent="MC/HBox/VBoxContainer2" instance=ExtResource("1_0f8q8")]
+layout_mode = 2
+text = "Disable this button
+
+by clicking the other one"
+
+[node name="Label" type="Label" parent="MC/HBox/VBoxContainer2"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("3_jmax1")
+horizontal_alignment = 1
+
+[node name="Context" type="Node" parent="." node_paths=PackedStringArray("src_btn", "src_label", "target_btn", "target_label")]
+script = ExtResource("3_hxihh")
+src_btn = NodePath("../MC/HBox/VBoxContainer/Btn")
+src_label = NodePath("../MC/HBox/VBoxContainer/Label")
+target_btn = NodePath("../MC/HBox/VBoxContainer2/TargetBtn")
+target_label = NodePath("../MC/HBox/VBoxContainer2/Label")
+
+[node name="OnSrcBtnPressed" type="Node" parent="Context"]
+script = SubResource("GDScript_2pd1j")
+
+[node name="ToggleTargetBtnDisabledState" type="Node" parent="Context/OnSrcBtnPressed"]
+script = SubResource("GDScript_upocu")
+
+[node name="ToggleSrcBtnText" type="Node" parent="Context/OnSrcBtnPressed/ToggleTargetBtnDisabledState"]
+script = SubResource("GDScript_q8xvy")
+
+[node name="IncSrcBtnCount" type="Node" parent="Context/OnSrcBtnPressed"]
+script = SubResource("GDScript_10lpq")
+
+[node name="UpdateSrcBtnLabel" type="Node" parent="Context/OnSrcBtnPressed/IncSrcBtnCount"]
+script = SubResource("GDScript_vd5m7")
+
+[node name="OnTargetBtnPressed" type="Node" parent="Context"]
+script = SubResource("GDScript_hi0rq")
+
+[node name="IncTargetBtnCount" type="Node" parent="Context/OnTargetBtnPressed"]
+script = SubResource("GDScript_sgkll")
+
+[node name="UpdateTargetBtnLabel" type="Node" parent="Context/OnTargetBtnPressed/IncTargetBtnCount"]
+script = SubResource("GDScript_gyd22")
