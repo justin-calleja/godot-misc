@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://lucxfnxmmhdy"]
+
+[ext_resource type="Texture2D" uid="uid://dbsad2qyw4vqr" path="res://assets/btn_lg/normal_UI_Flat_Button_Large_Lock_01a1.png" id="1_7x57r"]
+[ext_resource type="Texture2D" uid="uid://dx1e2oko4tbao" path="res://assets/btn_lg/pressed_UI_Flat_Button_Large_Lock_01a3.png" id="2_mo6o8"]
+[ext_resource type="Texture2D" uid="uid://ixuuf1diw8mf" path="res://assets/btn_lg/hover_UI_Flat_Button_Large_Lock_01a2.png" id="3_82aac"]
+
+[node name="TextureButttonLarge" type="TextureButton"]
+offset_right = 96.0
+offset_bottom = 32.0
+disabled = true
+texture_normal = ExtResource("1_7x57r")
+texture_pressed = ExtResource("2_mo6o8")
+texture_hover = ExtResource("3_82aac")

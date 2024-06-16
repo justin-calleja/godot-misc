@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://gf5nis01ugve"]
+
+[ext_resource type="Shader" path="res://scenes/outline_shader/outline2D.gdshader" id="1_po7nm"]
+[ext_resource type="Texture2D" uid="uid://6jm6oj020kpv" path="res://scenes/outline_shader/rocket.png" id="3_4kxp5"]
+[ext_resource type="Texture2D" uid="uid://v1rf3bbkodtt" path="res://scenes/outline_shader/original.png" id="3_nocbr"]
+[ext_resource type="Texture2D" uid="uid://ch42yiwdpjcxx" path="res://scenes/outline_shader/simple_rocket.png" id="4_q4fl4"]
+[ext_resource type="Texture2D" uid="uid://bjqen3gljcbg8" path="res://scenes/outline_shader/godot-bigger-canvas.png" id="6_rdyrw"]
+[ext_resource type="Texture2D" uid="uid://bl7kcnl583nqa" path="res://scenes/outline_shader/dummy_rocket.svg" id="7_dknc7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jirpi"]
+shader = ExtResource("1_po7nm")
+shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dowr5"]
+shader = ExtResource("1_po7nm")
+shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
+shader_parameter/line_thickness = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hq8oo"]
+shader = ExtResource("1_po7nm")
+shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
+shader_parameter/line_thickness = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tfqny"]
+shader = ExtResource("1_po7nm")
+shader_parameter/line_color = Color(0.603922, 0.823529, 0.901961, 1)
+shader_parameter/line_thickness = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbgge"]
+shader = ExtResource("1_po7nm")
+shader_parameter/line_color = Color(0.85098, 0.92549, 0.584314, 1)
+shader_parameter/line_thickness = 4.0
+
+[node name="OutlineShader" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 0.109804, 0.113725, 1)
+
+[node name="Rocket" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_jirpi")
+position = Vector2(253, 106)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_nocbr")
+region_rect = Rect2(0, -8, 329, 192)
+
+[node name="Rocket2" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_dowr5")
+position = Vector2(381, 176)
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_4kxp5")
+region_enabled = true
+region_rect = Rect2(-16, -16, 408, 512)
+
+[node name="SimpleRocket" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hq8oo")
+position = Vector2(377, 360)
+rotation = -1.5708
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_q4fl4")
+region_rect = Rect2(0, -8, 300, 378)
+
+[node name="Godot-bigger-canvas" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tfqny")
+position = Vector2(265, 224)
+texture = ExtResource("6_rdyrw")
+
+[node name="DummyRocket" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dbgge")
+position = Vector2(136, 237)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_dknc7")
