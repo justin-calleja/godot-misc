@@ -1,36 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://gf5nis01ugve"]
+[gd_scene load_steps=15 format=3 uid="uid://gf5nis01ugve"]
 
-[ext_resource type="Shader" path="res://scenes/outline_shader/outline2D.gdshader" id="1_po7nm"]
-[ext_resource type="Texture2D" uid="uid://6jm6oj020kpv" path="res://scenes/outline_shader/rocket.png" id="3_4kxp5"]
-[ext_resource type="Texture2D" uid="uid://v1rf3bbkodtt" path="res://scenes/outline_shader/original.png" id="3_nocbr"]
-[ext_resource type="Texture2D" uid="uid://ch42yiwdpjcxx" path="res://scenes/outline_shader/simple_rocket.png" id="4_q4fl4"]
-[ext_resource type="Texture2D" uid="uid://bjqen3gljcbg8" path="res://scenes/outline_shader/godot-bigger-canvas.png" id="6_rdyrw"]
-[ext_resource type="Texture2D" uid="uid://bl7kcnl583nqa" path="res://scenes/outline_shader/dummy_rocket.svg" id="7_dknc7"]
+[ext_resource type="Shader" path="res://scenes/outline_shader/shaders/outline2D.gdshader" id="1_po7nm"]
+[ext_resource type="Texture2D" uid="uid://6jm6oj020kpv" path="res://scenes/outline_shader/images/rocket.png" id="3_4kxp5"]
+[ext_resource type="Texture2D" uid="uid://v1rf3bbkodtt" path="res://scenes/outline_shader/images/original.png" id="3_nocbr"]
+[ext_resource type="Texture2D" uid="uid://ch42yiwdpjcxx" path="res://scenes/outline_shader/images/simple_rocket.png" id="4_q4fl4"]
+[ext_resource type="Texture2D" uid="uid://bjqen3gljcbg8" path="res://scenes/outline_shader/images/godot-bigger-canvas.png" id="6_rdyrw"]
+[ext_resource type="Script" path="res://scenes/outline_shader/anim/outline_anim_selected.gd" id="7_c4kmw"]
+[ext_resource type="Texture2D" uid="uid://bl7kcnl583nqa" path="res://scenes/outline_shader/images/dummy_rocket.svg" id="7_dknc7"]
+[ext_resource type="Shader" path="res://scenes/outline_shader/shaders/complex_outline.gdshader" id="7_i1i06"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jirpi"]
 shader = ExtResource("1_po7nm")
 shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
-shader_parameter/line_thickness = 1.0
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dowr5"]
 shader = ExtResource("1_po7nm")
 shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
-shader_parameter/line_thickness = 6.0
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq8oo"]
 shader = ExtResource("1_po7nm")
 shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
-shader_parameter/line_thickness = 6.0
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tfqny"]
 shader = ExtResource("1_po7nm")
 shader_parameter/line_color = Color(0.603922, 0.823529, 0.901961, 1)
-shader_parameter/line_thickness = 4.0
+shader_parameter/line_thickness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dbgge"]
 shader = ExtResource("1_po7nm")
-shader_parameter/line_color = Color(0.85098, 0.92549, 0.584314, 1)
-shader_parameter/line_thickness = 4.0
+shader_parameter/line_color = Color(0.905882, 0.909804, 0.752941, 1)
+shader_parameter/line_thickness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cswkf"]
+shader = ExtResource("7_i1i06")
+shader_parameter/line_thickness = 6.0
+shader_parameter/ring_count = 29
+shader_parameter/ring_offset = null
+shader_parameter/outline_color = Color(0.905882, 0.909804, 0.752941, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = null
+shader_parameter/max_or_add = true
 
 [node name="OutlineShader" type="Node2D"]
 
@@ -52,32 +66,44 @@ position = Vector2(253, 106)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_nocbr")
 region_rect = Rect2(0, -8, 329, 192)
+script = ExtResource("7_c4kmw")
 
 [node name="Rocket2" type="Sprite2D" parent="."]
 texture_filter = 2
 material = SubResource("ShaderMaterial_dowr5")
-position = Vector2(381, 176)
+position = Vector2(247, 187)
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4kxp5")
 region_enabled = true
 region_rect = Rect2(-16, -16, 408, 512)
+script = ExtResource("7_c4kmw")
 
 [node name="SimpleRocket" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hq8oo")
-position = Vector2(377, 360)
+position = Vector2(97, 64)
 rotation = -1.5708
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_q4fl4")
 region_rect = Rect2(0, -8, 300, 378)
+script = ExtResource("7_c4kmw")
 
 [node name="Godot-bigger-canvas" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tfqny")
-position = Vector2(265, 224)
+position = Vector2(119, 220)
 texture = ExtResource("6_rdyrw")
+script = ExtResource("7_c4kmw")
 
 [node name="DummyRocket" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dbgge")
-position = Vector2(136, 237)
+position = Vector2(427, 98)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_dknc7")
+script = ExtResource("7_c4kmw")
+
+[node name="DummyRocket2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cswkf")
+position = Vector2(541, 247)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_dknc7")
+script = ExtResource("7_c4kmw")

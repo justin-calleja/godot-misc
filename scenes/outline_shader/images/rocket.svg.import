@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbqie7qv825uk"
-path="res://.godot/imported/spaceRockets_002.png-940aafaba8a9da3aed373f0393a5e89c.ctex"
+uid="uid://dy2nr2trl1jii"
+path="res://.godot/imported/rocket.svg-752b9e003db1fc0a49d078a6be6fb71b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/outline_shader/spaceRockets_002.png"
-dest_files=["res://.godot/imported/spaceRockets_002.png-940aafaba8a9da3aed373f0393a5e89c.ctex"]
+source_file="res://scenes/outline_shader/images/rocket.svg"
+dest_files=["res://.godot/imported/rocket.svg-752b9e003db1fc0a49d078a6be6fb71b.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

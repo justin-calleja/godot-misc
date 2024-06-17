@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch42yiwdpjcxx"
-path="res://.godot/imported/simple_rocket.png-e0b8d8019db3f67dfc23a4186d410f0a.ctex"
+uid="uid://bjqen3gljcbg8"
+path="res://.godot/imported/godot-bigger-canvas.png-2665785d1119c93b4ed99a68facc261c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/outline_shader/simple_rocket.png"
-dest_files=["res://.godot/imported/simple_rocket.png-e0b8d8019db3f67dfc23a4186d410f0a.ctex"]
+source_file="res://scenes/outline_shader/images/godot-bigger-canvas.png"
+dest_files=["res://.godot/imported/godot-bigger-canvas.png-2665785d1119c93b4ed99a68facc261c.ctex"]
 
 [params]
 

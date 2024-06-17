@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v1rf3bbkodtt"
-path="res://.godot/imported/original.png-68490f66194f0b261055ffb91d5f82cb.ctex"
+uid="uid://cbqie7qv825uk"
+path="res://.godot/imported/spaceRockets_002.png-a461f403ddeac2cb7dd9cf8b88350778.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/outline_shader/original.png"
-dest_files=["res://.godot/imported/original.png-68490f66194f0b261055ffb91d5f82cb.ctex"]
+source_file="res://scenes/outline_shader/images/spaceRockets_002.png"
+dest_files=["res://.godot/imported/spaceRockets_002.png-a461f403ddeac2cb7dd9cf8b88350778.ctex"]
 
 [params]
 
