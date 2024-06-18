@@ -11,7 +11,6 @@ var parent: Sprite2D
 
 func _ready() -> void:
 	parent = get_parent() as Sprite2D
-	print("in _ready of resizable_select with parent: %s", parent)
 	var parent_size = parent.get_rect().size
 	scale_to_fit(parent_size)
 	visible = true

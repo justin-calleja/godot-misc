@@ -15,8 +15,6 @@ func _on_sprite2D_selected(sprite2D: Sprite2D) -> void:
 	
 
 func remove_resizeable_select_from(sprite: Sprite2D):
-	for child in sprite.get_children():
-		print(child.name)
 	var resizeable_select = sprite.find_child("ResizeableSelect", false, false)
 	if resizeable_select:
 		resizeable_select.queue_free()
