@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2dysmk00tppx"]
+
+[ext_resource type="Script" path="res://scenes/select/select_main.gd" id="1_xpn2j"]
+[ext_resource type="Script" path="res://scenes/select/detect_sprite_press.gd" id="5_512ur"]
+[ext_resource type="Texture2D" uid="uid://bjqen3gljcbg8" path="res://scenes/outline_shader/images/godot-bigger-canvas.png" id="9_kihxn"]
+
+[node name="SelectMain" type="Node2D"]
+script = ExtResource("1_xpn2j")
+
+[node name="Godot-bigger-canvas" type="Sprite2D" parent="."]
+position = Vector2(247, 160)
+texture = ExtResource("9_kihxn")
+
+[node name="Node" type="Node" parent="Godot-bigger-canvas"]
+script = ExtResource("5_512ur")
+
+[node name="Godot-bigger-canvas2" type="Sprite2D" parent="."]
+position = Vector2(450, 157)
+texture = ExtResource("9_kihxn")
+
+[node name="Node" type="Node" parent="Godot-bigger-canvas2"]
+script = ExtResource("5_512ur")
+
+[connection signal="selected" from="Godot-bigger-canvas/Node" to="." method="_on_sprite2D_selected"]
+[connection signal="selected" from="Godot-bigger-canvas2/Node" to="." method="_on_sprite2D_selected"]

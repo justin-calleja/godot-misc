@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://deyiqmm6832qq"]
+
+[sub_resource type="GDScript" id="GDScript_w10iq"]
+script/source = "extends Area2D
+
+signal selected(node)
+
+#func _input(event):
+ #if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+  #if get_rect().has_point(to_local(event.position)):
+   #print(\"You clicked on Sprite!\")
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		#if get_rect().has
+	
+"
+
+[node name="AreaOfSelection" type="Area2D"]
+script = SubResource("GDScript_w10iq")

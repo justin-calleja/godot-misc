@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgaosu3jiai6v"]
+
+[ext_resource type="Texture2D" uid="uid://b6hy5yekxfy2s" path="res://assets/ui_flat_select/UI_Flat_Select_01a1.png" id="1_ojlhv"]
+[ext_resource type="Script" path="res://scenes/select/resizeable_select/resizeable_select.gd" id="2_tjmyw"]
+
+[node name="ResizeableSelect" type="Sprite2D"]
+texture = ExtResource("1_ojlhv")
+script = ExtResource("2_tjmyw")
