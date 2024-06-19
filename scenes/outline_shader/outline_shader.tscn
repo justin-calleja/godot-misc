@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://gf5nis01ugve"]
+[gd_scene load_steps=17 format=3 uid="uid://gf5nis01ugve"]
 
 [ext_resource type="Shader" path="res://scenes/outline_shader/shaders/outline2D.gdshader" id="1_po7nm"]
 [ext_resource type="Texture2D" uid="uid://6jm6oj020kpv" path="res://scenes/outline_shader/images/rocket.png" id="3_4kxp5"]
 [ext_resource type="Texture2D" uid="uid://v1rf3bbkodtt" path="res://scenes/outline_shader/images/original.png" id="3_nocbr"]
 [ext_resource type="Texture2D" uid="uid://ch42yiwdpjcxx" path="res://scenes/outline_shader/images/simple_rocket.png" id="4_q4fl4"]
+[ext_resource type="Shader" path="res://scenes/outline_shader/shaders/smooth_outline.gdshader" id="6_6bhru"]
 [ext_resource type="Texture2D" uid="uid://bjqen3gljcbg8" path="res://scenes/outline_shader/images/godot-bigger-canvas.png" id="6_rdyrw"]
 [ext_resource type="Script" path="res://scenes/outline_shader/anim/outline_anim_selected.gd" id="7_c4kmw"]
 [ext_resource type="Texture2D" uid="uid://bl7kcnl583nqa" path="res://scenes/outline_shader/images/dummy_rocket.svg" id="7_dknc7"]
@@ -45,6 +46,13 @@ shader_parameter/aspect_ratio = 1.0
 shader_parameter/square_border = false
 shader_parameter/offset = null
 shader_parameter/max_or_add = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afdkb"]
+shader = ExtResource("6_6bhru")
+shader_parameter/Smooth = true
+shader_parameter/width = 8.0
+shader_parameter/outline_color = Color(0.772549, 0.235294, 0.301961, 1)
+shader_parameter/pixel_size = 4
 
 [node name="OutlineShader" type="Node2D"]
 
@@ -107,3 +115,8 @@ position = Vector2(541, 247)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_dknc7")
 script = ExtResource("7_c4kmw")
+
+[node name="Godot" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_afdkb")
+position = Vector2(247, 326)
+texture = ExtResource("6_rdyrw")
