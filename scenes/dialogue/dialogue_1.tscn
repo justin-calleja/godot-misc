@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca6at4c50clkc"]
+
+[ext_resource type="Script" path="res://scenes/dialogue/dialogue_1.gd" id="1_ajq33"]
+[ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_nbphu"]
+
+[node name="Dialogue1" type="Node2D"]
+script = ExtResource("1_ajq33")
+
+[node name="ButtonLarge" parent="." instance=ExtResource("1_nbphu")]
+offset_left = 51.0
+offset_top = 62.0
+offset_right = 147.0
+offset_bottom = 102.0
