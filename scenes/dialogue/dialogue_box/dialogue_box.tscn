@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dobw6e3ahlncn"]
+
+[ext_resource type="Theme" uid="uid://df401mjea7nm8" path="res://resources/sporty_font_label.tres" id="1_vly2b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kloh"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw3je"]
+bg_color = Color(0.262745, 0.262745, 0.262745, 1)
+
+[node name="DialogueBox" type="CanvasLayer"]
+
+[node name="MC" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MC"]
+custom_minimum_size = Vector2(2.08165e-12, 168)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kloh")
+
+[node name="MC" type="MarginContainer" parent="MC"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="MC/MC"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uw3je")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MC/MC"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Text" type="Label" parent="MC/MC/HBoxContainer"]
+custom_minimum_size = Vector2(220, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_vly2b")
+text = "hello world this is some text.
+Well well the fox says...sdfsdf sdf sdfsdf sdfsdf sdfsdf sdf skjhsd sdf sdf sdf sdf sdf sdfs dfsd fsdfsd"
+autowrap_mode = 2
+clip_text = true
+
+[node name="Continue" type="Label" parent="MC/MC/HBoxContainer"]
+custom_minimum_size = Vector2(24, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_vly2b")
+text = "V"
