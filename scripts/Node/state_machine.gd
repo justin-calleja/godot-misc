@@ -31,6 +31,7 @@ func transition_to(state_name: String, msg: Dictionary = {}) -> void:
 	var new_state = get_node(state_name)
 	
 	if not new_state:
+		printerr("state machine has no state named '%s'" % state_name)
 		return
 	
 	var prev_state_name = state.name

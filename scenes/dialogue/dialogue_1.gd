@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var _btn: Button = $ButtonLarge
 @onready var _dbox_btn: Button = $DBoxBtn
-@onready var dbox: DialogueBox = $DialogueBox
+@onready var dbox: DBox = $DBox
 
 var _dialogue_line: DialogueLine
 var _resource: Resource
@@ -35,5 +35,5 @@ func _on_btn_pressed() -> void:
 
 
 func _on_dboc_btn_pressed() -> void:
-	_dialogue_line = await _get_next_dialogue_line()
-	dbox.show_text(_dialogue_line.text)
+	dbox.run_dialogue("res://dialogue/tmp.dialogue", "this_is_a_node_title")
+	#dbox.show_text(_dialogue_line.text)
