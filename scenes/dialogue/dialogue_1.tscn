@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca6at4c50clkc"]
+[gd_scene load_steps=4 format=3 uid="uid://ca6at4c50clkc"]
 
 [ext_resource type="Script" path="res://scenes/dialogue/dialogue_1.gd" id="1_ajq33"]
 [ext_resource type="PackedScene" uid="uid://tlartynj2n3e" path="res://scenes/btn/button_large.tscn" id="1_nbphu"]
+[ext_resource type="PackedScene" uid="uid://dobw6e3ahlncn" path="res://scenes/dialogue/dialogue_box/dialogue_box.tscn" id="3_jcy3a"]
 
 [node name="Dialogue1" type="Node2D"]
 script = ExtResource("1_ajq33")
@@ -11,3 +12,13 @@ offset_left = 51.0
 offset_top = 62.0
 offset_right = 147.0
 offset_bottom = 102.0
+text = "print stuff"
+
+[node name="DBoxBtn" parent="." instance=ExtResource("1_nbphu")]
+offset_left = 178.0
+offset_top = 62.0
+offset_right = 274.0
+offset_bottom = 102.0
+text = "Open DialogueBox"
+
+[node name="DialogueBox" parent="." instance=ExtResource("3_jcy3a")]

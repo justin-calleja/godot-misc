@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dobw6e3ahlncn"]
+[gd_scene load_steps=7 format=3 uid="uid://dobw6e3ahlncn"]
 
+[ext_resource type="Script" path="res://scripts/Node/state_machine.gd" id="1_37ah4"]
+[ext_resource type="Script" path="res://scenes/dialogue/dialogue_box/dialogue_box.gd" id="1_myja2"]
 [ext_resource type="Theme" uid="uid://df401mjea7nm8" path="res://resources/sporty_font_label.tres" id="1_vly2b"]
+[ext_resource type="Script" path="res://scenes/dialogue/dialogue_box/states/hidden_state.gd" id="4_gvfjb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kloh"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -13,6 +16,7 @@ border_width_bottom = 4
 bg_color = Color(0.262745, 0.262745, 0.262745, 1)
 
 [node name="DialogueBox" type="CanvasLayer"]
+script = ExtResource("1_myja2")
 
 [node name="MC" type="MarginContainer" parent="."]
 anchors_preset = 12
@@ -63,3 +67,10 @@ layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_vly2b")
 text = "V"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_37ah4")
+initial_state = NodePath("Hidden")
+
+[node name="Hidden" type="Node" parent="StateMachine"]
+script = ExtResource("4_gvfjb")
