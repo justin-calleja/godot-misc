@@ -1,11 +1,11 @@
 class_name State
 extends Node
 
-var parent: StateMachine
+var sm: StateMachine
 
 
 func _ready() -> void:
-	parent = get_parent()
+	sm = get_parent()
 
 
 # Receives events from the `_unhandled_input()` callback.
@@ -32,5 +32,8 @@ func exit_lifecycle() -> void:
 
 
 func transition_to(state_name: String, msg: Dictionary = {}) -> void:
-	parent.transition_to(state_name, msg)
+	if sm.state.name == state_name:
+		print("not transitioning to %s because already there" % state_name)
+		return
+	sm.transition_to(state_name, msg)
 

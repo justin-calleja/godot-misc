@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dobw6e3ahlncn"]
+[gd_scene load_steps=10 format=3 uid="uid://dobw6e3ahlncn"]
 
 [ext_resource type="Script" path="res://scripts/Node/state_machine.gd" id="1_37ah4"]
 [ext_resource type="Script" path="res://scenes/dialogue/dbox/dobx.gd" id="1_myja2"]
 [ext_resource type="Theme" uid="uid://df401mjea7nm8" path="res://resources/sporty_font_label.tres" id="1_vly2b"]
-[ext_resource type="Script" path="res://scenes/dialogue/dbox/states/hidden_state.gd" id="4_gvfjb"]
+[ext_resource type="Script" path="res://scenes/dialogue/dbox/states/hidden.gd" id="4_gvfjb"]
 [ext_resource type="Script" path="res://scenes/dialogue/dbox/states/show_in_progress.gd" id="5_6hnfb"]
+[ext_resource type="Script" path="res://scenes/dialogue/dbox/states/show_complete.gd" id="6_hvomn"]
+[ext_resource type="Script" path="res://scenes/dialogue/dbox/states/end.gd" id="7_65r3v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kloh"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -78,3 +80,9 @@ script = ExtResource("4_gvfjb")
 
 [node name="ShowInProgress" type="Node" parent="StateMachine"]
 script = ExtResource("5_6hnfb")
+
+[node name="ShowComplete" type="Node" parent="StateMachine"]
+script = ExtResource("6_hvomn")
+
+[node name="End" type="Node" parent="StateMachine"]
+script = ExtResource("7_65r3v")

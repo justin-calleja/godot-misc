@@ -36,4 +36,6 @@ func _on_btn_pressed() -> void:
 
 func _on_dboc_btn_pressed() -> void:
 	dbox.run_dialogue("res://dialogue/tmp.dialogue", "this_is_a_node_title")
+	_dbox_btn.release_focus()
+	#_dbox_btn.set_focus_mode(FocusMode.FOCUS_NONE)
 	#dbox.show_text(_dialogue_line.text)
